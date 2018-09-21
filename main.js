@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".active{\r\n    background-color: brown;\r\n    font-size: 50px;\r\n    font-style: italic;\r\n}\r\n.class1{\r\n    background-color: chocolate;\r\n    font-size: 60px;\r\n    font-style:italic; \r\n}"
+module.exports = ""
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = ".active{\r\n    background-color: brown;\r\n    font-size: 50p
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p [style.background-color]=\"'blue'\">\n  hello\n  </p>\n  <p [style.font-size]=\"isimportant?'50px':'10px'\">\n    good morning\n  </p>\n  <p [ngStyle]='mystyles'>\n    style binding\n    </p>\n    <p [class.active]=\"'istrue'\">\n      class binding\n      </p>\n      <p [ngClass]='myclass'>\n        multiple class binding\n        </p>\n\n"
+module.exports = "<h1>{{name| reverseStr:\"Mr.\":\"The great\"}}</h1>\n\n"
 
 /***/ }),
 
@@ -65,16 +65,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.isimportant = true;
-        this.mystyles = {
-            'background-color': 'red',
-            'font-size': '50px',
-            'font-style': 'italic',
-        };
-        this.myclass = {
-            class1: this.isimportant = true,
-            class2: this.isimportant = false,
-        };
+        this.name = 'somraj';
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -102,7 +93,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _reverse_str_pipe__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./reverse-str.pipe */ "./src/app/reverse-str.pipe.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -112,22 +106,68 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
+                _reverse_str_pipe__WEBPACK_IMPORTED_MODULE_5__["ReverseStrPipe"]
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"]
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_http__WEBPACK_IMPORTED_MODULE_3__["HttpModule"]
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reverse-str.pipe.ts":
+/*!*************************************!*\
+  !*** ./src/app/reverse-str.pipe.ts ***!
+  \*************************************/
+/*! exports provided: ReverseStrPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReverseStrPipe", function() { return ReverseStrPipe; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var ReverseStrPipe = /** @class */ (function () {
+    function ReverseStrPipe() {
+    }
+    ReverseStrPipe.prototype.transform = function (value, before, after) {
+        var newstr = before + " " + value + " " + after;
+        //for(var i=value.length-1; i>=0; i--){
+        //newstr +=value.charAt(i);
+        //}
+        return newstr;
+    };
+    ReverseStrPipe = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
+            name: 'reverseStr'
+        })
+    ], ReverseStrPipe);
+    return ReverseStrPipe;
 }());
 
 
@@ -195,7 +235,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Somaraj\bindings\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Somaraj\task1\src\main.ts */"./src/main.ts");
 
 
 /***/ })
